@@ -1,0 +1,255 @@
+Remove the gcc complier, if exists check 
+
+$ gcc -version    
+
+if exists then remove or else left.
+
+$ sudo apt-get --purge remove gcc <version> e.g.:9.4.0
+
+install curl
+
+$ sudo apt-get install curl
+
+check version
+
+$ curl --version or curl -V
+
+install vscode
+
+$ sudo snap install --classic code
+
+check version $code --version
+
+Then build the essential
+
+$ sudo apt-get install build-essential
+
+After install ghcup from the url : https://www.haskell.org/ghcup/
+then install the ghcup
+
+$ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+
+check the version of ghcup, ghc, cabal
+
+$ ghcup --version  // The GHCup Haskell installer, version v0.1.18.0
+
+$ ghc  --version // The Glorious Glasgow Haskell Compilation System, version 8.10.7
+ 
+ imp. tips: ghc must be the above version ie. version 8.10.7 but not less than mentioned.
+ 
+ $cabal --version // The cabal, version 3.6.x is installed but we need cabal 3.2.0.0
+ 
+ 1st install the cabal version that to be modified
+ 
+ $ ghcup install cabal 3.2.0.0
+ 
+ Then set the cabal
+ 
+ $ ghcup set cabal 3.2.0.0
+ 
+ this vesrion modified, then check version
+ 
+ $ cabal --version // version 3.2.0.0
+ 
+ 
+Then install Nix from the url : https://nixos.org/download.html or given below.
+Copy the below link and then execute.
+
+ $ sh <(curl -L -k https://nixos.org/nix/install) --no-daemon
+
+Run the next step
+
+ $ . /home/<user-name>/.nix-profile/etc/profile.d/nix.sh  //<user-name means your computer name>
+
+We now need to add Input Outputs caches to greatly speed up the building process. Without this step, you might be running nix-shell for days rather than minutes! This can be found here: IOG Binaries. Let’s create a new config file that has the associated IOG links. Run:
+
+$ mkdir ~/.config/nix
+echo 'substituters = https://hydra.iohk.io https://iohk.cachix.org https://cache.nixos.org/' >> ~/.config/nix/nix.conf
+echo 'trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=' >> ~/.config/nix/nix.conf
+
+Check Installed version of Nix
+
+$ nix-env --version
+
+Clone Plutus-apps
+
+$ git clone https://github.com/input-output-hk/plutus-apps.git
+
+Clone Plutus Pioneer program
+
+$ git clone https://github.com/input-output-hk/plutus-pioneer-program.git
+
+Navigate to the current week01 directory in the plutus-pioneer-program folder and open the cabal.project file:
+And Find the plutus apps tag
+
+$ ~/plutus-pioneer-program/code/week01
+
+$ cat cabal.project
+
+check tha tag: 
+  
+  source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/plutus-apps.git
+  tag: 41149926c108c71831cfe8d244c83b0ee4bf5c8a // this one
+
+	
+Go to plutus-apps/
+
+Go to main
+
+$ git checkout main
+
+Go to pull
+
+$ git pull
+
+	git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a
+
+
+Run Nix shell
+
+$ nix-shell
+
+In case error
+nix-collect-garbage
+
+41149926c108c71831cfe8d244c83b0ee4bf5c8a
+
+
+
+user@user-Z390-M:~/plutus-apps$ git checkout 3746610e53654a1167aeb4c6294c6096d16b0502
+warning: refname '3746610e53654a1167aeb4c6294c6096d16b0502' is ambiguous.
+Git normally never creates a ref that ends with 40 hex characters
+because it will be ignored when you just specify 40-hex. These refs
+may be created by mistake. For example,
+
+  git checkout -b $br $(git rev-parse ...)
+
+where "$br" is somehow empty and a 40-hex ref is created. Please
+examine these refs and maybe delete them. Turn this message off by
+running "git config advice.objectNameWarning false"
+Switched to branch '3746610e53654a1167aeb4c6294c6096d16b0502'
+
+user@user-Z390-M:~/plutus-apps$ nix-shell
+
+/*-------------------------------------
+It will take 3-4 hours to install
+
+1st time completely. After successfully
+
+instllation. Do the process. 
+
+Close all process and restart the system.
+
+After the do all process mentioned
+
+below. It is based on 3rd Iteration.
+
+Open terminal and check the curent 
+
+working directory.
+----------------------------------------*\
+
+$pwd
+/home/quotusmantu
+
+//Then type nix-shell to start the nix-shell prompt.
+
+$nix-shell
+
+//It will take 5-10 minutes to start the nix-shell
+
+ and check current directory.
+
+[nix-shell:~]$ pwd
+/home/quotusmantu
+
+//Once nix-shell installed then do all operations.
+
+//Inside the nix-shell then type
+
+[nix-shell:~]$ cd plutus-apps
+
+//Inside the plutus-apps go to the plutus-playground-client
+
+[nix-shell:~/plutus-apps~]$ cd plutus-playground-client
+
+[nix-shell:~/plutus-apps/plutus-playground-client]$ plutus-playground-server
+
+//It will take few time to start the server. After the server started successfully
+
+====================Process for all new terminals ======================
+
+[[[<<<Imp Tips: Open a new terminal means always starts the nix-shell inside the plutus-apps>>>]]]
+  
+$ cd plutus-apps
+
+../plutus-apps$ nix-shell 
+
+// if not loading or started the nix-shell and show error nix-shell not found then type
+
+ $ sh <(curl -L -k https://nixos.org/nix/install) --no-daemon
+
+Run the next step
+
+ $ . /home/<user-name>/.nix-profile/etc/profile.d/nix.sh  //<user-name means your computer name>
+ 
+
+====================same process for all new terminals also======================
+
+open another terminal to start the plutus-playgroud
+
+-------------Not mandatory-------------------------------------------------------------------
+Before start the local server, edit the webpack.config.js inside the plutus-playground-client, 
+so that 'https' error will not be dispalyed in client machine.
+
+
+[nix-shell:~/plutus-apps/plutus-playground-client]$ gedit ebpack.config.js
+
+once opened then edit the https: true to false and saved the file.
+
+module.exports = {
+    devtool,
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8009,
+        https: true, (=> changed to false)
+        stats: "errors-warnings",
+        proxy: {
+            "/api": {
+                target: "http://localhost:8080",
+            },
+        },
+    },
+-----------------------------------------------------------------------------------------------
+[nix-shell:~/plutus-apps/plutus-playground-client]$ npm run start
+
+once the 'npm run start' worked successfully, it will provide 
+an url to run the playground in web browser while typing i.e http://localhost:8009
+
+playground successfully worked!! hurry
+
+============================================================================================
+open another terminal build the weeks projects of plutus-pioneer-program using 
+
+//For week01, same process for all. 1st build then repl  then work on the project.
+
+ [nix-shell:~/plutus-pioneer-program/code/week01]$ cabal build
+ 
+ after succesfully completed, then
+ 
+ [nix-shell:~/plutus-pioneer-program/code/week01]$ cabal repl
+ 
+ ok, one module loaded.
+Prelude Week01.EnglishAuction>
+
+read the week01 then complete the task.
+
+do the same process for all weeks i.e. week02, 03, 04 ....
+
+For video file get the online url : https://github.com/input-output-hk/plutus-pioneer-program
+
+===================Best of luck for your successful work done on Haskell/Plutus works for IOHK================================
+
