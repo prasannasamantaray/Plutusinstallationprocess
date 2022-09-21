@@ -118,7 +118,7 @@ nix-collect-garbage
 
 
 
-user@user-Z390-M:~/plutus-apps$ git checkout 3746610e53654a1167aeb4c6294c6096d16b0502
+/home/quotusmantu/plutus-apps$ git checkout 3746610e53654a1167aeb4c6294c6096d16b0502
 warning: refname '3746610e53654a1167aeb4c6294c6096d16b0502' is ambiguous.
 Git normally never creates a ref that ends with 40 hex characters
 because it will be ignored when you just specify 40-hex. These refs
@@ -131,7 +131,7 @@ examine these refs and maybe delete them. Turn this message off by
 running "git config advice.objectNameWarning false"
 Switched to branch '3746610e53654a1167aeb4c6294c6096d16b0502'
 
-user@user-Z390-M:~/plutus-apps$ nix-shell
+/home/quotusmantu/plutus-apps$ nix-shell
 
 /*-------------------------------------
 It will take 3-4 hours to install
@@ -200,29 +200,7 @@ Run the next step
 
 open another terminal to start the plutus-playgroud
 
--------------Not mandatory-------------------------------------------------------------------
-Before start the local server, edit the webpack.config.js inside the plutus-playground-client, 
-so that 'https' error will not be dispalyed in client machine.
 
-
-[nix-shell:~/plutus-apps/plutus-playground-client]$ gedit ebpack.config.js
-
-once opened then edit the https: true to false and saved the file.
-
-module.exports = {
-    devtool,
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 8009,
-        https: true, (=> changed to false)
-        stats: "errors-warnings",
-        proxy: {
-            "/api": {
-                target: "http://localhost:8080",
-            },
-        },
-    },
 -----------------------------------------------------------------------------------------------
 [nix-shell:~/plutus-apps/plutus-playground-client]$ npm run start
 
